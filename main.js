@@ -35,7 +35,7 @@ export async function ambilDaftarPembeli() {
       id: dok.id,
       sisa: dok.data().sisa,
       barangreturn: dok.data().barangreturn,
-      pendapatan: dok.data(). pendapatan,
+      pendapatan: dok.data().pendapatan,
     });
   });
 
@@ -46,34 +46,37 @@ export async function ambilDaftarPembeli() {
 //######################################
 
 //fungsi untuk menambahkan data pembeli
-export async function tambahPembeli(nama, alamat, notlpn) {
+export async function tambahPembeli(sisa, barangreturn, pendapatan) {
   try {
     const dokRef = await addDoc(collection(db, 'stokopname'), {
       sisa: sisa,
       barangreturn: barangreturn,
-      pendapatan: pendapatan 
+      pendapatan: pendapatan
     });
     console.log('berhasil menembah produk ' + dokRef.id);
   } catch (e) {
     console.log('gagal menambah produk ' + e);
   }
 }
-//######################################
-export async function ubahPembeli(docId, nama, alamat, noTlpn) {
-  await updateDoc(doc(db, "stokopname", docId), {
-    sisa: sisa,
-    barangreturn: barangreturn,
-    pendapatan: pendapatan 
-  });
-}
-export async function hapusPembeli(docId) {
+
+
+export async function hapus(docId) {
   await deleteDoc(doc(db, "stokopname", docId));
 }
 
+//######################################
+export async function ubahPembeli(sisa, barangreturn, pendapatan) {
+  await updateDoc(doc(db, "stokopname", docId), {
+    sisa: sisa,
+    barangreturn: barangreturn,
+    pendapatan: pendapatan
+  });
+}
 
-export async function ambilPembeli(docId) {
+export async function ambilAbsensi(docId) {
   const docRef = await doc(db, "stokopname", docId);
   const docSnap = await getDoc(docRef);
 
   return await docSnap.data();
 }
+
