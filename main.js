@@ -33,8 +33,7 @@ export async function ambilDaftarPembeli() {
   cuplikanKueri.forEach((dok) => {
     hasil.push({
       id: dok.id,
-      sisa: dok.data().sisa,
-      barangreturn: dok.data().barangreturn,
+      sisa: dok.data().nama barang,jumlah barang: dok.data().sisa barang,
       pendapatan: dok.data().pendapatan,
     });
   });
